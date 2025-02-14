@@ -1,0 +1,79 @@
+﻿@model PATIENT_PORTAL.Models.PATIENT_HealthRecord
+<h2>Create Patient Health Record</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Patient Health Record</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <!-- Case Information Section -->
+        <h4>Case Information</h4>
+        <div class="form-group">
+            @Html.Label("Case Number", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("CaseNumber", null, new { @class = "form-control" })
+                @Html.ValidationMessage("CaseNumber", "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Attending Physician", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("AttendingPhysician", null, new { @class = "form-control" })
+                @Html.ValidationMessage("AttendingPhysician", "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Diagnosis", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextArea("Diagnosis", null, new { @class = "form-control" })
+                @Html.ValidationMessage("Diagnosis", "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!-- Vital Signs Section -->
+        <h4>Vital Signs</h4>
+        <div class="form-group">
+            @Html.Label("Blood Pressure", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("BloodPressure", null, new { @class = "form-control" })
+                @Html.ValidationMessage("BloodPressure", "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Heart Rate", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("HeartRate", null, new { @class = "form-control" })
+                @Html.ValidationMessage("HeartRate", "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!-- BMI Section -->
+        <h4>BMI Record</h4>
+        <div class="form-group">
+            @Html.Label("Weight (kg)", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("Weight", null, new { @class = "form-control" })
+                @Html.ValidationMessage("Weight", "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Height (m)", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("Height", null, new { @class = "form-control" })
+                @Html.ValidationMessage("Height", "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!-- Submit Button -->
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create Health Record" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary mt-3" })
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

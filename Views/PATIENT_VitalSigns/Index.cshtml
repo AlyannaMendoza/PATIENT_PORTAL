@@ -1,0 +1,64 @@
+﻿@model IEnumerable<PATIENT_PORTAL.Models.PATIENT_VitalSigns>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DateChecked)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BloodPressure)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Temperature)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PulseRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RespiratoryRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OxygenSaturation)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateChecked)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BloodPressure)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Temperature)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PulseRate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RespiratoryRate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OxygenSaturation)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

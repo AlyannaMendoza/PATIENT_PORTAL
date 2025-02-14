@@ -1,0 +1,49 @@
+﻿@model PATIENT_PORTAL.Models.PATIENT_HealthRecord
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PATIENT_HealthRecord</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CaseInfoId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CaseInfoId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VitalSignsId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VitalSignsId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BMI_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BMI_Id)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

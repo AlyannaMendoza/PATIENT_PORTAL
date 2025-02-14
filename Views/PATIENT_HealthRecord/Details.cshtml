@@ -1,0 +1,43 @@
+﻿@model PATIENT_PORTAL.Models.PATIENT_HealthRecord
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PATIENT_HealthRecord</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CaseInfoId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CaseInfoId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VitalSignsId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VitalSignsId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BMI_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BMI_Id)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

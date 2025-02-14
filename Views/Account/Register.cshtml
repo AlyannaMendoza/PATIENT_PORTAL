@@ -1,0 +1,84 @@
+﻿@model PATIENT_PORTAL.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = null;
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+<div class="container d-flex justify-content-center align-items-center vh-100" style="background-image: url('~/Content/images/bg.jpg'); background-size: cover;">
+    <div class="card shadow-lg p-4" style="width: 700px; border-radius: 10px;">
+        <h4 class="text-center mb-4">Create a New Account</h4>
+        <hr />
+
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "needs-validation", novalidate = "true" }))
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="row">
+            <div class="col-6">
+                <label class="form-label" for="ProfileImage">Profile Image</label>
+                <img id="imagePreview" src="#" alt="Profile Preview" class="img-fluid mt-2 d-none" style="max-width: 100px; border-radius: 50%;" />
+                <input type="file" name="ProfileImage" class="form-control" />
+                @Html.ValidationMessageFor(m => m.ProfileImage, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-6">
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.FullName, new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", placeholder = "Enter your full name" })
+                    @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.Email, new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter your email" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.Password, new { @class = "form-label" })
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter your password" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "form-label" })
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm your password" })
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.Role, new { @class = "form-label" })
+                    @Html.DropDownListFor(m => m.Role, new SelectList(Enum.GetNames(typeof(PATIENT_PORTAL.Models.Enums.RoleEnum))), "Select Role", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Role, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+         </div>
+         <br />
+            <button type="submit" class="btn btn-primary w-100">Register</button>
+
+            <div class="text-center mt-3">
+                <a href="@Url.Action("Login", "Account")" class="text-decoration-none">Already have an account? Login</a>
+            </div>
+            }
+        </div>
+        </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+<script>
+    document.querySelector('input[name="ProfileImage"]').addEventListener('change', function (event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var img = document.getElementById('imagePreview');
+            img.src = reader.result;
+            img.classList.remove('d-none');
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    });
+</script>

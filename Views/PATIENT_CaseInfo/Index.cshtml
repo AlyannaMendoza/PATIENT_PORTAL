@@ -1,0 +1,54 @@
+﻿@model IEnumerable<PATIENT_PORTAL.Models.PATIENT_CaseInfo>
+
+@{
+    ViewBag.Title = "Case List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card border-dark mb-3" style="max-width: 100%">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h1>Cases</h1>
+        <a href="@Url.Action("Create", "PATIENTS_CaseInfo")" class="btn btn-success">
+            <i class="fa fa-plus"></i> Create New
+        </a>
+    </div>
+    <div class="card-body">
+        <table id="patientsTable" class="table table-hover table-bordered table-responsive">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.CaseNumber)</th>
+                    <th>@Html.DisplayNameFor(model => model.DateCreated)</th>
+                    <th>@Html.DisplayNameFor(model => model.AttendingPhysician)</th>
+                    <th>@Html.DisplayNameFor(model => model.Diagnosis)</th>
+                    <th>@Html.DisplayNameFor(model => model.SignsSymptoms)</th>
+                    <th>Actoins</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.CaseNumber)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DateCreated)</td>
+                        <td>@Html.DisplayFor(modelItem => item.AttendingPhysician)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Diagnosis)</td>
+                        <td>@Html.DisplayFor(modelItem => item.SignsSymptoms)</td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Actions
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="@Url.Action("Edit", "PATIENTS_CaseInfo", new { id = item.Id })">Edit</a></li>
+                                    <li><a class="dropdown-item" href="@Url.Action("Details", "PATIENTS_CaseInfo", new { id = item.Id })">Details</a></li>
+                                    <li><a class="dropdown-item text-danger" href="@Url.Action("Delete", "PATIENTS_CaseInfo", new { id = item.Id })">Deactivate</a></li>
+                                </ul>
+                            </div>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Patient Portal</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <!-- W3.CSS Styles -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            font-family: "Raleway", sans-serif;
+        }
+
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: #343a40;
+            padding-top: 20px;
+        }
+
+            .sidebar a {
+                padding: 10px;
+                text-decoration: none;
+                font-size: 18px;
+                color: white;
+                display: block;
+            }
+
+                .sidebar a:hover {
+                    background: #495057;
+                }
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        .navbar {
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <!-- Top container -->
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <span class="navbar-brand ms-auto">Patient Portal</span>
+        </div>
+    </nav>
+
+    <!-- Sidebar/menu -->
+    <div class="sidebar bg-dark collapse d-lg-block" id="sidebarMenu">
+        <div class="text-center">
+            <img src="@(ViewBag.LayoutModel?.ProfileImage ?? "/content/images/default.png")" class="rounded-circle my-2" width="50" height="50">
+            <h6 class="text-white">@(ViewBag.LayoutModel?.FullName ?? "Guest")</h6>
+        </div>
+        <hr class="text-white">
+        <a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> Home</a>
+        <a href="@Url.Action("Index", "Patients")"><i class="fa fa-users"></i> Patient List</a>
+        <a href="@Url.Action("Index", "PATIENT_HealthRecord")"><i class="bi bi-heart-pulse-fill"></i> Health Records</a>
+        <a href="@Url.Action("Index", "PATIENT_CaseInfo")"><i class="fa fa-folder-open"></i> Cases List</a>
+        <hr class="text-white">
+        <a href="@Url.Action("About", "Home")"><i class="fa fa-info-circle"></i> About</a>
+        <a href="@Url.Action("Contact", "Home")"><i class="fa fa-envelope"></i> Contact</a>
+    </div>
+
+    <!-- Main Content -->
+    <main class="content">
+        <div class="container">
+            @RenderBody()
+            <footer class="text-center mt-5">
+                <hr>
+                <p>&copy; @DateTime.Now.Year - Patient Portal (Patient Registration System)</p>
+            </footer>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+</body>
+</html>
