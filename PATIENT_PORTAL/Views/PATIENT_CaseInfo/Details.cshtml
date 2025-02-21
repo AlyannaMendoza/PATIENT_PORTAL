@@ -1,0 +1,67 @@
+﻿@model PATIENT_PORTAL.Models.CaseInfo
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CaseInfo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CaseNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CaseNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AttendingPhysician)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AttendingPhysician)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SignsSymptoms)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SignsSymptoms)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Diagnosis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Diagnosis)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,98 @@
+﻿@model PATIENT_PORTAL.Models.Patient
+
+@{
+    ViewBag.Title = "Patient Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .info-box {
+        padding: 10px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        margin-bottom: 8px;
+        font-size: 16px;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header text-center py-3 rounded-top-4">
+            <h2 class="mb-0">@Model.FirstName @Model.MiddleName @Model.LastName</h2>
+        </div>
+        <div class="card-body p-4">
+            <div class="row g-3">
+                <!-- Column 1 -->
+                <div class="col-md-6">
+                    <div class="info-box">
+                        <strong>Blood Type:</strong> @Model.BloodType
+                    </div>
+                    <div class="info-box">
+                        <strong>Age:</strong> @Model.Age
+                    </div>
+                    <div class="info-box">
+                        <strong>Birth Date:</strong> @Model.BirthDate.ToString("MMMM dd, yyyy")
+                    </div>
+                    <div class="info-box">
+                        <strong>Place of Birth:</strong> @Model.PlaceOfBirth
+                    </div>
+                    <div class="info-box">
+                        <strong>Sex:</strong> @Model.Sex
+                    </div>
+                    <div class="info-box">
+                        <strong>Civil Status:</strong> @Model.CivilStatus
+                    </div>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="col-md-6">
+                    <div class="info-box">
+                        <strong>Nationality:</strong> @Model.Nationality
+                    </div>
+                    <div class="info-box">
+                        <strong>Contact Number:</strong> @Model.ContactNumber
+                    </div>
+                    <div class="info-box">
+                        <strong>Address:</strong> @Model.StreetAddress, @Model.City, @Model.Province, @Model.ZipCode
+                    </div>
+                    <div class="info-box">
+                        <strong>Suffix:</strong> @Model.Suffix
+                    </div>
+                    <div class="info-box">
+                        <strong>Status:</strong>
+                        @if (Model.IsActive)
+                        {
+                            <span class="badge bg-success">Active</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Inactive</span>
+                        }
+                    </div>
+                    <div class="info-box">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-bs-toggle="dropdown">
+                                Actions
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="@Url.Action("Details", "PATIENT_CaseInfo",  new { id = Model.Id })">Patient's Case Information</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Details", "PATIENT_VitalSigns", new { id =Model.Id })">Patient's Vital Signs</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Details", "PATIENT_BMIs", new { id =Model.Id })">Patient's BMI</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="card-footer bg-light text-end rounded-bottom-4">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary me-3" })
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

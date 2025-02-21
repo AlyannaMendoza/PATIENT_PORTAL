@@ -1,0 +1,148 @@
+﻿@model PATIENT_PORTAL.Models.Patient
+
+@{
+    ViewBag.Title = "Edit Patient Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card border-dark mb-3">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h3>Patient Details Form</h3>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="card-body">
+            <div class="row g-3">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+
+                <div class="col-md-4">
+                    <label for="FirstName" class="form-label">First Name<span style="color: red;">*</span></label>
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", id = "FirstName" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-4">
+                    <label for="MiddleName" class="form-label">Middle Name</label>
+                    @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "form-control", id = "MiddleName" } })
+                    @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-4">
+                    <label for="LastName" class="form-label">Last Name<span style="color: red;">*</span></label>
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", id = "LastName" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-3">
+                    <label for="Suffix" class="form-label">Suffix</label>
+                    @Html.EnumDropDownListFor(model => model.Suffix, "Select...", new { @class = "form-select", id = "Suffix" })
+                    @Html.ValidationMessageFor(model => model.Suffix, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-3">
+                    <label for="BirthDate" class="form-label">Date of Birth<span style="color: red;">*</span></label>
+                    @Html.TextBoxFor(model => model.BirthDate, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", type = "date", id = "BirthDate" } })
+                    @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-3">
+                    <label for="Age" class="form-label">Age<span style="color: red;">*</span></label>
+                    @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control", id = "Age" } })
+                    @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-3">
+                    <label for="PlaceOfBirth" class="form-label">Place of Birth<span style="color: red;">*</span></label>
+                    @Html.EditorFor(model => model.PlaceOfBirth, new { htmlAttributes = new { @class = "form-control", id = "PlaceOfBirth" } })
+                    @Html.ValidationMessageFor(model => model.PlaceOfBirth, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-3">
+                    <label for="Sex" class="form-label">Sex<span style="color: red;">*</span></label>
+                    @Html.EnumDropDownListFor(model => model.Sex, new { @class = "form-select", id = "Sex" })
+                    @Html.ValidationMessageFor(model => model.Sex, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-3">
+                    <label for="BloodType" class="form-label">Blood Type</label>
+                    @Html.DropDownListFor(model => model.BloodType,
+                        new SelectList(new[] { "A+", "B+", "AB+", "O+", "A-", "B-", "AB-", "O-" }, "Select..."),
+                        new { @class = "form-select", id = "BloodType"})
+                    @Html.ValidationMessageFor(model => model.BloodType, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-3">
+                    <label for="CivilStatus" class="form-label">Civil Status<span style="color: red;">*</span></label>
+                    @Html.EnumDropDownListFor(model => model.CivilStatus, new { @class = "form-select", id = "CivilStatus" })
+                    @Html.ValidationMessageFor(model => model.CivilStatus, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-3">
+                    <label for="Nationality" class="form-label">Nationality<span style="color: red;">*</span></label>
+                    @Html.EditorFor(model => model.Nationality, new { htmlAttributes = new { @class = "form-control", id = "Nationality" } })
+                    @Html.ValidationMessageFor(model => model.Nationality, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-3">
+                    <label for="ContactNumber" class="form-label">Contact Number<span style="color: red;">*</span></label>
+                    @Html.EditorFor(model => model.ContactNumber, new { htmlAttributes = new { @class = "form-control", id = "ContactNumber" } })
+                    @Html.ValidationMessageFor(model => model.ContactNumber, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-3">
+                    <label for="StreetAddress" class="form-label">Street Address<span style="color: red;">*</span></label>
+                    @Html.EditorFor(model => model.StreetAddress, new { htmlAttributes = new { @class = "form-control", id = "StreetAddress" } })
+                    @Html.ValidationMessageFor(model => model.StreetAddress, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-3">
+                    <label for="City" class="form-label">City<span style="color: red;">*</span></label>
+                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", id = "City" } })
+                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-3">
+                    <label for="Province" class="form-label">Province<span style="color: red;">*</span></label>
+                    @Html.EditorFor(model => model.Province, new { htmlAttributes = new { @class = "form-control", id = "Province" } })
+                    @Html.ValidationMessageFor(model => model.Province, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-3">
+                    <label for="ZipCode" class="form-label">Zip Code<span style="color: red;">*</span></label>
+                    @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control", id = "ZipCode" } })
+                    @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+                </div>
+
+                <hr />
+                <div class="col-md-3">
+                    <label for="IsActive" class="form-label">Status</label>
+                        @Html.DropDownListFor(model => model.IsActive,
+                            new SelectList(new[]
+                            {
+                                new { Text = "Active", Value = "true" },
+                                new { Text = "Deactivate", Value = "false" }
+                            }, "Value", "Text"),
+                            new { @class = "form-select" })
+                        @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                </div>
+
+                <hr />
+                <div class="col-12">
+                    <button class="btn btn-success" type="submit" value="Save">Save</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
