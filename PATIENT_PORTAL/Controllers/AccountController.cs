@@ -188,10 +188,10 @@ namespace PATIENT_PORTAL.Controllers
                     // Generate a unique file name
                     string fileName = model.FullName + System.IO.Path.GetExtension(model.ProfileImage.FileName);
                     string filePath = System.IO.Path.Combine(uploadDir, fileName);
+                    imagePath = System.IO.Path.Combine("/Content/images/Users", fileName);
 
                     // Save the file
                     model.ProfileImage.SaveAs(filePath);
-                    imagePath = "/Content/images/Users" + fileName;
                 }
 
                 var user = new ApplicationUser

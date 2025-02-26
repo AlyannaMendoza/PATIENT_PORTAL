@@ -32,6 +32,11 @@ namespace PATIENT_PORTAL.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.CaseInfoList = db.CaseInfos.Where(c => c.PatientId == id).ToList();
+            ViewBag.VitalSignsId = db.VitalSigns.Where(v => v.PatientId == id).ToList();
+            ViewBag.BmiId = db.BMIs.Where(v => v.PatientId == id).ToList();
+
             return View(patient);
         }
 

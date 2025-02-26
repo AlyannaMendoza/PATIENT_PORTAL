@@ -21,6 +21,7 @@ namespace PATIENT_PORTAL.Models
         public string CaseNumber { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; }
 
         [Required]

@@ -52,10 +52,10 @@
 
     <!-- Sidebar/menu -->
     <div class="sidebar bg-dark collapse d-lg-block" id="sidebarMenu">
-        @*<div class="text-center">
-            <img src="@(ViewBag.ApplicationUser.ProfileImage)" class="rounded-circle my-2" width="60" height="60">
-            <h4 class="text-white">@(ViewBag.Application.FullName)</h4>
-        </div>*@
+        <div>
+            @Html.Partial("_LoginPartial")
+        </div>
+        <br>
         <hr class="text-white">
         <a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> Home</a>
         <a href="@Url.Action("Index", "Patients")"><i class="fa fa-users"></i> Patient List</a>
@@ -81,8 +81,6 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

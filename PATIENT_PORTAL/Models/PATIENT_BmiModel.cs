@@ -15,6 +15,8 @@ namespace PATIENT_PORTAL.Models
         [ForeignKey("PatientId")]
         public virtual Patient Patient { get; set; }
 
+        [Required]
+        [DataType(DataType.Date)]
         public DateTime DateChecked { get; set; } = DateTime.UtcNow;
 
         [Required]

@@ -39,7 +39,13 @@ namespace PATIENT_PORTAL.Controllers
         // GET: PATIENT_BMIs/Create
         public ActionResult Create()
         {
-            ViewBag.PatientId = new SelectList(db.Patients, "Id", "FirstName", "LastName");
+            var patients = db.Patients.Select(p => new
+            {
+                Id = p.Id,
+                FullName = p.LastName + ", " + p.FirstName
+            }).ToList();
+
+            ViewBag.PatientId = new SelectList(patients, "Id", "FullName");
             return View();
         }
 
@@ -59,7 +65,13 @@ namespace PATIENT_PORTAL.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PatientId = new SelectList(db.Patients, "Id", "FirstName", "LastName", bMI.PatientId);
+            var patients = db.Patients.Select(p => new
+            {
+                Id = p.Id,
+                FullName = p.LastName + ", " + p.FirstName
+            }).ToList();
+
+            ViewBag.PatientId = new SelectList(patients, "Id", "FullName", bMI.PatientId);
             return View(bMI);
         }
 
@@ -75,7 +87,14 @@ namespace PATIENT_PORTAL.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PatientId = new SelectList(db.Patients, "Id", "FirstName", "LastName", bMI.PatientId);
+
+            var patients = db.Patients.Select(p => new
+            {
+                Id = p.Id,
+                FullName = p.LastName + ", " + p.FirstName
+            }).ToList();
+
+            ViewBag.PatientId = new SelectList(patients, "Id", "FullName", bMI.PatientId);
             return View(bMI);
         }
 
@@ -94,7 +113,13 @@ namespace PATIENT_PORTAL.Controllers
                 TempData["SuccessMessage"] = "BMI edited successfully!";
                 return RedirectToAction("Index");
             }
-            ViewBag.PatientId = new SelectList(db.Patients, "Id", "FirstName", "LastName", bMI.PatientId);
+
+            var patients = db.Patients.Select(p => new
+            {
+                Id = p.Id,
+                FullName = p.LastName + ", " + p.FirstName
+            }).ToList();
+            ViewBag.PatientId = new SelectList(patients, "Id", "FullName", bMI.PatientId);
             return View(bMI);
         }
 

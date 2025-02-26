@@ -39,7 +39,13 @@ namespace PATIENT_PORTAL.Controllers
         // GET: PATIENT_VitalSigns/Create
         public ActionResult Create()
         {
-            ViewBag.PatientId = new SelectList(db.Patients, "Id", "FirstName", "LastName");
+            var patients = db.Patients.Select(p => new
+            {
+                Id = p.Id,
+                FullName = p.LastName + ", " + p.FirstName
+            }).ToList();
+
+            ViewBag.PatientId = new SelectList(patients, "Id", "FullName");
             return View();
         }
 
@@ -59,7 +65,13 @@ namespace PATIENT_PORTAL.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PatientId = new SelectList(db.Patients, "Id", "FirstName", "LastName", vitalSigns.PatientId);
+            var patients = db.Patients.Select(p => new
+            {
+                Id = p.Id,
+                FullName = p.LastName + ", " + p.FirstName
+            }).ToList();
+
+            ViewBag.PatientId = new SelectList(patients, "Id", "FullName", vitalSigns.PatientId);
             return View(vitalSigns);
         }
 
@@ -75,7 +87,14 @@ namespace PATIENT_PORTAL.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PatientId = new SelectList(db.Patients, "Id", "FirstName", "LastName", vitalSigns.PatientId);
+
+            var patients = db.Patients.Select(p => new
+            {
+                Id = p.Id,
+                FullName = p.LastName + ", " + p.FirstName
+            }).ToList();
+
+            ViewBag.PatientId = new SelectList(patients, "Id", "FullName", vitalSigns.PatientId);
             return View(vitalSigns);
         }
 
@@ -94,22 +113,14 @@ namespace PATIENT_PORTAL.Controllers
                 TempData["SuccessMessage"] = "Vital signs saved!";
                 return RedirectToAction("Index");
             }
-            ViewBag.PatientId = new SelectList(db.Patients, "Id", "FirstName", vitalSigns.PatientId);
-            return View(vitalSigns);
-        }
 
-        // GET: PATIENT_VitalSigns/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
+            var patients = db.Patients.Select(p => new
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            VitalSigns vitalSigns = db.VitalSigns.Find(id);
-            if (vitalSigns == null)
-            {
-                return HttpNotFound();
-            }
+                Id = p.Id,
+                FullName = p.LastName + ", " + p.FirstName
+            }).ToList();
+
+            ViewBag.PatientId = new SelectList(patients, "Id", "FullName", vitalSigns.PatientId);
             return View(vitalSigns);
         }
 
